@@ -9,7 +9,7 @@ namespace Library.Persistence
 {
     public class BooksRepository
     {
-        private readonly List<Book> _database = new List<Book>() 
+        public readonly List<Book> _database = new List<Book>() 
         {
             new Book("The Old Man and the Sea", "Ernest Hemingway", 1952, "AAAA", 10, 19.99m),
             new Book("For Whom the Bell Tolls", "Ernest Hemingway", 1940, "BBBB", 0, 119.99m),
@@ -30,7 +30,11 @@ namespace Library.Persistence
 
         public void RemoveByTitle(Book book) 
         {
-            _database.Remove(book);
+            var bookToRemove = _database.FirstOrDefault(b => b.Title == book.Title);
+            if (bookToRemove != null)
+            {
+                _database.Remove(bookToRemove);
+            }
         }
 
         public List<Book> GetAll()

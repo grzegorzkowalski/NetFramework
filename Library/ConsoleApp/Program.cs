@@ -1,11 +1,6 @@
 ﻿using ConsoleApp.Services;
-using Library.Domain;
 using Library.Persistence;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.ConsoleApp
 {
@@ -13,8 +8,6 @@ namespace Library.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Book book = new Book();
-            BooksRepository booksRepository = new BooksRepository();
             Console.WriteLine("Write username");
             string username = Console.ReadLine();
             Console.WriteLine("Write password");
@@ -72,8 +65,7 @@ namespace Library.ConsoleApp
                 Console.WriteLine("Access Denied");
                 Console.WriteLine("Press any key to close");
                 Console.ReadKey();
-            }
-            
+            }      
         }
     }
 }

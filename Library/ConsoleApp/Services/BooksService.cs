@@ -28,7 +28,7 @@ namespace ConsoleApp.Services
             Console.WriteLine("Add products available");
             var productsAvailable = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Add price");
-            var price = Convert.ToDecimal(Console.ReadLine());    
+            var price = Convert.ToDecimal(Console.ReadLine());  
             _repository.Insert(new Book(title, author, publicationYear, isbn, productsAvailable, price));
         }
 
