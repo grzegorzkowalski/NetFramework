@@ -1,4 +1,4 @@
-﻿using ConsoleApp.Services.ConsoleApp;
+﻿using ConsoleApp.Services;
 using Library.Domain;
 using Library.Persistence;
 using System;
@@ -26,50 +26,53 @@ namespace Library.ConsoleApp
                 while (!command.Equals("exit"))
                 {
                     Console.WriteLine("Menu:");
-                    Console.WriteLine("1. Add");
-                    Console.WriteLine("2. Delete");
-                    Console.WriteLine("3  List");
-                    Console.WriteLine("4. Change");
-                    Console.WriteLine("5. Add order");
-                    Console.WriteLine("6. List od orders");
+                    Console.WriteLine("1. add");
+                    Console.WriteLine("2. delete");
+                    Console.WriteLine("3  list");
+                    Console.WriteLine("4. change");
+                    Console.WriteLine("5. add order");
+                    Console.WriteLine("6. list of orders");
                     Console.WriteLine("7. exit");
                     command = Console.ReadLine();
                     var instanceOfBookService = new BooksService();
                     switch (command)
                     {
-                        case "dodaj":
+                        case "add":
                             instanceOfBookService.AddBook();
                             break;
-                        case "usun":
+                        case "delete":
                             instanceOfBookService.RemoveBook();
                             break;
-                        case "wypisz":
+                        case "list":
                             instanceOfBookService.ListBooks();
                             break;
-                        case "zmien":
+                        case "change":
                             instanceOfBookService.ChangeState();
                             break;
-                        case "dodaj zamowienie":
-                            orderService.PlaceOrder();
+                        case "add order":
+                            Console.WriteLine("trying to add a new order");
                             break;
-                        case "lista zamowien":
-                            orderService.ListAll();
+                        case "list of orders":
+                            Console.WriteLine("trying to list all orders");
                             break;
-                        case "wyjdz":
-                            continue;
+                        case "exit":
+                            break;
                         case "default":
                             Console.WriteLine("błędna komenda");
                             break;
                     }
-                    Console.ReadLine();
+                    Console.WriteLine(!command.Equals("exit") ? "Press any key to continue" : "Press any key to close");
+                    Console.ReadKey();
                     Console.Clear();
                 }
             }
             else
             {
                 Console.WriteLine("Access Denied");
+                Console.WriteLine("Press any key to close");
+                Console.ReadKey();
             }
-            Console.ReadLine();
+            
         }
     }
 }
