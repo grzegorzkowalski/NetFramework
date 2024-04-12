@@ -1,6 +1,10 @@
-﻿using ConsoleApp.Services;
+﻿using ConsoleApp;
+using ConsoleApp.Services;
 using Library.Persistence;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.ConstrainedExecution;
 
 namespace Library.ConsoleApp
 {
@@ -8,6 +12,25 @@ namespace Library.ConsoleApp
     {
         static void Main(string[] args)
         {
+            //Inheritance of Interfaces
+            List<ICar> cars = new List<ICar>();
+            Car car = new Car();
+            Truck truck = new Truck();
+            cars.Add(car);
+            cars.Add(truck);
+
+            var generic = new GenericClass<int>();
+            generic.AddValues(1);
+            generic.AddValues(2);
+            generic.AddValues(3);
+            generic.PrintValues(1);
+
+            var stringGeneric = new GenericClass<string>();
+            stringGeneric.AddValues("John");
+            stringGeneric.AddValues("Doe");
+            stringGeneric.AddValues("Smith");
+            stringGeneric.PrintValues("Kowal");
+
             Console.WriteLine("Write username");
             string username = Console.ReadLine();
             Console.WriteLine("Write password");
