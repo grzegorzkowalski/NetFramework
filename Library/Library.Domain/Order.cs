@@ -8,8 +8,8 @@ namespace Library.Domain
 {
     public class Order
     {
-        public DateTime Date { get; set; }
-        public List<BookOrdered> BooksOrderedList { get; set; }
+        public DateTime Date { get; }
+        public List<BookOrdered> BooksOrderedList { get; }
 
         public Order()
         {

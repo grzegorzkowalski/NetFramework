@@ -8,7 +8,13 @@ namespace Library.Domain
 {
     public class BookOrdered
     {
-        public int BookId { get; set; }
-        public int NumberOrdered { get; set; }
+        public int BookId { get; }
+        public int NumberOrdered { get; }
+
+        public BookOrdered(int bookId, int numberOrdered)
+        {
+            BookId = bookId;
+            NumberOrdered = numberOrdered;
+        }
     }
 }

@@ -32,9 +32,7 @@ namespace ConsoleApp.Services
                         var id = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("How many do you want to order?");
                         var count = Convert.ToInt32(Console.ReadLine());
-                        BookOrdered bookOrdered = new BookOrdered();
-                        bookOrdered.BookId = id;
-                        bookOrdered.NumberOrdered = count;
+                        BookOrdered bookOrdered = new BookOrdered(id, count);
                         order.BooksOrderedList.Add(bookOrdered);
                         break;
                     case "end":

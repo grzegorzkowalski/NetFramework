@@ -37,7 +37,8 @@ namespace ConsoleApp.Services
         {
             Console.WriteLine("Add title which you want to delete?");
             var title = Console.ReadLine();
-            _repository.RemoveByTitle(new Book() { Title = title });
+            //TODO find object and pass it
+            //_repository.RemoveByTitle();
         }
 
         internal void ListBooks()

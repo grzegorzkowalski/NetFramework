@@ -47,7 +47,7 @@ namespace Library.Persistence
             var book = _database.FirstOrDefault(b => b.Title == title);
             if (book != null)
             {
-                book.ProductsAvailable += stateChange;
+                book.ChangeProductsAvailableNumber(stateChange);
             }
         }
 
