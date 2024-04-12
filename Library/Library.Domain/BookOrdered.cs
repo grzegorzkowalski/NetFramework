@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Library.Domain
 {
-    public class Class1
+    public class BookOrdered
     {
+        public int BookId { get; set; }
+        public int NumberOrdered { get; set; }
     }
 }

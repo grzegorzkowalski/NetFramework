@@ -8,6 +8,7 @@ namespace Library.Domain
 {
     public class Book
     {
+        public int ID { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public int PublicationYear { get; set; }
@@ -18,8 +19,9 @@ namespace Library.Domain
 
         public Book() { }
 
-        public Book(string title, string author, int publicationYear, string isbn, int productsAvailable, decimal price)
+        public Book(int id, string title, string author, int publicationYear, string isbn, int productsAvailable, decimal price)
         {
+            ID = id;
             Title = title;
             Author = author;
             ISBN = isbn;

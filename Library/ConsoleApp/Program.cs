@@ -14,6 +14,8 @@ namespace Library.ConsoleApp
             string password = Console.ReadLine();
             var repository = new BooksRepository();
             var instanceOfBookService = new BooksService(repository);
+            var orderRepository = new OrdersRepository();
+            var instanceOfOrderService = new OrderService(orderRepository);
             if (username == "Admin" && password == "password")
             {
                 Console.WriteLine("Access Granted");
@@ -44,10 +46,10 @@ namespace Library.ConsoleApp
                             instanceOfBookService.ChangeState();
                             break;
                         case "add order":
-                            Console.WriteLine("trying to add a new order");
+                            instanceOfOrderService.PlaceOrder();
                             break;
                         case "list of orders":
-                            Console.WriteLine("trying to list all orders");
+                            instanceOfOrderService.ListAll();
                             break;
                         case "exit":
                             break;

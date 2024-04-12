@@ -28,8 +28,9 @@ namespace ConsoleApp.Services
             Console.WriteLine("Add products available");
             var productsAvailable = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Add price");
-            var price = Convert.ToDecimal(Console.ReadLine());  
-            _repository.Insert(new Book(title, author, publicationYear, isbn, productsAvailable, price));
+            var price = Convert.ToDecimal(Console.ReadLine()); 
+            var id = _repository.GetAll().Count + 1;
+            _repository.Insert(new Book(id, title, author, publicationYear, isbn, productsAvailable, price));
         }
 
         internal void RemoveBook()
@@ -45,13 +46,13 @@ namespace ConsoleApp.Services
             var books = _repository.GetAll();
             foreach (var book in books)
             {
-                Console.WriteLine($"{book.Title} - {book.Author} - {book.PublicationYear}");
+                Console.WriteLine($"ID: {book.ID} - {book.Title} - {book.Author} - {book.PublicationYear}");
             }
         }
 
         internal void ChangeState()
         {
-            Console.WriteLine("Add the title y0u want to update?");
+            Console.WriteLine("Add the title you want to update?");
             var title = Console.ReadLine();
             Console.WriteLine("Add value");
             var productsAvailable = Convert.ToInt32(Console.ReadLine());
