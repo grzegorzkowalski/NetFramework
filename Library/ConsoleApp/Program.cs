@@ -31,6 +31,8 @@ namespace Library.ConsoleApp
             stringGeneric.AddValues("Smith");
             stringGeneric.PrintValues("Kowal");
 
+            //Task 7 Ikea https://gitlab.com/grzegorzkowalski/netcorefundamentals/-/tree/workshop/Workshop/Library/Ikea?ref_type=heads
+
             Console.WriteLine("Write username");
             string username = Console.ReadLine();
             Console.WriteLine("Write password");
