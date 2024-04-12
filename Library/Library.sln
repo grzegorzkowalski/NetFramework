@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{09111E69-0F30-4258-BC98-41BB5EB7F109}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polymorphism", "Polymorphism\Polymorphism.csproj", "{F345203D-DAF4-4D50-850D-F37FDED903C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebForms", "WebForms\WebForms.csproj", "{454EAD2C-2503-4320-939E-F51715B4EBF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,14 @@ Global
 		{DD7C4B4A-EA9B-4349-9D31-ACA02F0C0364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD7C4B4A-EA9B-4349-9D31-ACA02F0C0364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD7C4B4A-EA9B-4349-9D31-ACA02F0C0364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F345203D-DAF4-4D50-850D-F37FDED903C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F345203D-DAF4-4D50-850D-F37FDED903C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F345203D-DAF4-4D50-850D-F37FDED903C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F345203D-DAF4-4D50-850D-F37FDED903C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{454EAD2C-2503-4320-939E-F51715B4EBF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{454EAD2C-2503-4320-939E-F51715B4EBF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{454EAD2C-2503-4320-939E-F51715B4EBF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{454EAD2C-2503-4320-939E-F51715B4EBF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
