@@ -25,8 +25,8 @@ Add the following line anywhere within the <body> tag:
 
 Create a simple `aspx` page that enters a name and prints "Hello" + name in the page. Use a TextBox + Button + Label.
 
-In Default.aspx
-Open the Default.aspx file and modify the content inside the <form> tag as follows:
+In <yourPageName>.aspx
+Open the <yourPageName>.aspx file and modify the content inside the <form> tag as follows:
 
 ```
 <form id="form1" runat="server">
@@ -38,8 +38,8 @@ Open the Default.aspx file and modify the content inside the <form> tag as follo
 </form>
 ```
 
-In Default.aspx.cs
-Open Default.aspx.cs and add the following method to handle the button's Click event:
+In <yourPageName>.aspx.cs
+Open <yourPageName>.aspx.cs and add the following method to handle the button's Click event:
 ```
 protected void ButtonGreet_Click(object sender, EventArgs e)
 {
