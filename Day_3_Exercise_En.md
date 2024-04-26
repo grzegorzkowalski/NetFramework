@@ -741,14 +741,18 @@ protected void GridViewCategories_RowUpdating(object sender, GridViewUpdateEvent
 Add the following controls to `Login.aspx` for user inputs and submission:
 
 ```aspx
-<form id="form1" runat="server">
-    <div>
-        Username: <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox><br>
-        Password: <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><br>
-        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
-        <asp:Label ID="lblMessage" runat="server" />
-    </div>
-</form>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Login</h2>
+            <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtUsername" runat="server" placeholder="Username"></asp:TextBox>
+            <br />
+            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password"></asp:TextBox>
+            <br />
+            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" />
+        </div>
+    </form>
 ```
 
 ###### Implement the Authentication Logic
@@ -758,22 +762,47 @@ Add the following controls to `Login.aspx` for user inputs and submission:
 1. Open the `Login.aspx.cs` file.
 1. Add the following code to the `btnLogin_Click` event handler:
 ```csharp
-protected void btnLogin_Click(object sender, EventArgs e)
-{
-    string username = txtUsername.Text;
-    string password = txtPassword.Text;
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
-    if (username == "Admin" && password == "password")
-    {
-        lblMessage.Text = "Access Granted";
-        lblMessage.ForeColor = System.Drawing.Color.Green;
-    }
-    else
-    {
-        lblMessage.Text = "Access Denied";
-        lblMessage.ForeColor = System.Drawing.Color.Red;
-    }
-}
+            if (FormsAuthentication.Authenticate(username, password))
+            { 
+                FormsAuthentication.RedirectFromLoginPage("Default.aspx", true);
+            }
+            else
+            {
+                lblMessage.Text = "Invalid username or password.";
+            }
+        }
+```
+###### Add configuration in `web.config`
+
+1. In `system.web` add:
+
+```
+	  <authentication mode="Forms">
+		  <forms loginUrl="Login.aspx" defaultUrl="Default.aspx" timeout="60">
+			  <credentials passwordFormat="Clear">
+				  <user name="Admin" password="password" />
+			  </credentials>
+		  </forms>
+	  </authentication>
+	  <authorization>
+		  <deny users="?" />
+	  </authorization>
+```
+
+2. After `system.web` add:
+```
+  <location path="Login.aspx">
+	<system.web>
+		<authorization>
+			<allow users="?" />
+		</authorization>
+	</system.web>
+  </location>
 ```
 
 ###### Design Web Forms for Each Command
@@ -814,6 +843,9 @@ protected void btnAdd_Click(object sender, EventArgs e)
     // Code to add the book to the database
 }
 ```
+
+1. Check do you have authentication cookie after login.
+2. Delete cookie and refresh page. Check what will happen.
 
 ###### Navigation and Menu
 1. Create a Main Menu
@@ -1117,4 +1149,36 @@ namespace Library.Persistence
     }
 }
 ```
+###### Add Cache
 
+1. To add caching to the ListBooks.aspx page in your ASP.NET Web Forms application, you can utilize the ASP.NET Cache object to store the list of books fetched from the _repository.GetAll() method. This approach reduces unnecessary database calls, especially if the book data does not change frequently, thus improving the page's performance.
+
+###### Step 1: Modify Page_Load to Use Cache
+You need to modify the Page_Load method to check if the data is already in the cache and use it if available. If not, retrieve the data from the repository, store it in the cache, and then bind it to the GridView. Here's how you can implement it:
+```
+protected void Page_Load(object sender, EventArgs e)
+{
+    if (!IsPostBack)
+    {
+        // Attempt to retrieve the books data from the cache
+        var books = Cache["BooksData"] as List<Book>;  // Assume 'Book' is the class for the data
+
+        // Check if the cache is empty
+        if (books == null)
+        {
+            books = _repository.GetAll();  // Fetch the data from the repository
+            // Store the data in cache; expire it after 30 minutes
+            Cache.Insert("BooksData", books, null, DateTime.Now.AddMinutes(30), System.Web.Caching.Cache.NoSlidingExpiration);
+        }
+
+        gvBooks.DataSource = books;
+        gvBooks.DataBind();
+    }
+}
+```
+
+Explanation of Cache Usage:
+- Cache Retrieval: Cache["BooksData"] attempts to retrieve the list of books from the cache.
+- Cache Initialization: If the cache is empty (books == null), the data is fetched from the repository.
+- Cache Insertion: The data is then stored in the cache using Cache.Insert. Here, an absolute expiration time of 30 minutes is set, which means the cached data will be removed after 30 minutes regardless of activity.
+- Data Binding: Finally, the GridView gvBooks is bound to the data source, whether it was retrieved from the cache or just fetched from the repository.
